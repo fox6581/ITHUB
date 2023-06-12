@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="foo()">Добавить число</button>
+</body>
+</html> 
+<script>
+    // Создание массива с 30 случайными числами
+  var numbers = [];
+  for (var i = 0; i < 30; i++) {
+    numbers.push(Math.floor(Math.random() * 100));
+  }
+  
+  // Создание таблицы 5х6
+  var table = document.createElement("table");
+  table.id = "myTable";
+  var rowIndex = 0;
+  for (var i = 0; i < numbers.length; i++) {
+    if (i % 6 === 0) {
+      var row = document.createElement("tr");
+      table.appendChild(row);
+      rowIndex++;
+    }
+  
+    var cell = document.createElement("td");
+    cell.textContent = numbers[i];
+  
+    // Проверка условия и применение стиля для ячеек
+    if (numbers[i] >= 50) {
+      cell.style.backgroundColor = "orange";
+    }
+  
+    row.appendChild(cell);
+  }
+  
+  document.body.appendChild(table);
+  
+
+
+  function foo() {
+    const table = document.getElementById("myTable");
+    const rows = table.getElementsByTagName("tr");
+    let currentRow = rows[rows.length - 1]; // Получение последней строки
+
+    // Если текущая строка содержит уже 6 ячеек, создаем новую строку
+    if (currentRow.cells.length >= 6) {
+        currentRow = table.insertRow(-1);
+    }
+
+    const cell = currentRow.insertCell(-1);
+
+    const randomNumber = Math.floor(Math.random() * 100);
+    cell.textContent = randomNumber;
+
+    if (randomNumber >= 50) {
+        cell.style.backgroundColor = "orange";
+    }
+}
+
+  </script>
